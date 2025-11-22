@@ -10,15 +10,21 @@ import java.util.List;
 
 @Configuration
 public class CorsConfig {
-	@Bean
-	public org.springframework.web.cors.UrlBasedCorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration cors = new CorsConfiguration();
-		cors.setAllowedOrigins(List.of("http://localhost:4200"));
-		cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-		cors.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-		cors.setAllowCredentials(true);
-		org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", cors);
-		return source;
-	}
+
+    @Bean
+    public org.springframework.web.cors.UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration cors = new CorsConfiguration();
+        
+        cors.addAllowedOriginPattern("*");   // Allow all domains
+        cors.addAllowedMethod("*");          // Allow all methods
+        cors.addAllowedHeader("*");          // Allow all headers
+        
+        cors.setAllowCredentials(true);      // Allow cookies/tokens
+
+        org.springframework.web.cors.UrlBasedCorsConfigurationSource source =
+                new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+        
+        source.registerCorsConfiguration("/**", cors);
+        return source;
+    }
 }
