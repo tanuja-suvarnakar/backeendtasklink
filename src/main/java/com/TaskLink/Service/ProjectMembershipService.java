@@ -34,7 +34,7 @@ public class ProjectMembershipService {
 	@Autowired
 	private EmailService emailService;
 
-	@Value("${app.frontend.base-url:http://localhost:4200}")
+	@Value("${app.frontend.base-url:https://tanuja-suvarnakar.github.io/tasklink-frontend}")
 	private String frontendBaseUrl;
 
 	// ✅ Check if user is member by ID
